@@ -22,9 +22,15 @@ function incrementScore(scoreElement){
     scoreElement.textContent = score;
 }
 
-function playRound(e, result, userScore, computerScore){
+function playRound(){
     const userSelection = this.classList.value; //gets the player choice
     const computerSelection = getComputerChoice();
+
+    const userScore = document.querySelector('.user .score'); // references the span element showing the user's score.
+    const computerScore = document.querySelector('.computer .score'); // references the span element showing the computer's score.
+
+    const result = document.querySelector('.declaration');
+
     let winnerDeclaration;
 
     if (userSelection === 'rock' && computerSelection === 'scissors'){
@@ -51,26 +57,22 @@ function playRound(e, result, userScore, computerScore){
     result.textContent = winnerDeclaration;
 }
 
-function checkCompletion(userScoreElement, computerScoreElement, result){
-    userScore = Number(userScoreElement.textContent);
-    computerScore = Number(computerScoreElement.textContent);
+// function checkCompletion(userScoreElement, computerScoreElement, result){
+//     userScore = Number(userScoreElement.textContent);
+//     computerScore = Number(computerScoreElement.textContent);
 
-    if (userScore === 5){
-        result.textContent = 'The game is over. You beat the computer!';
-    } else if (computerScore === 5){
-        result.textContent = 'The game is over. You lost to the computer.';
-    }
-}
+//     if (userScore === 5){
+//         result.textContent = 'The game is over. You beat the computer!';
+//     } else if (computerScore === 5){
+//         result.textContent = 'The game is over. You lost to the computer.';
+//     }
+// }
 
 function game() {
     const userSelections = document.querySelectorAll('button'); // references all selection buttons on webpage.
-    const userScore = document.querySelector('.user .score'); // references the span element showing the user's score.
-    const computerScore = document.querySelector('.computer .score'); // references the span element showing the computer's score.
-
-    const result = document.querySelector('.declaration'); //used to declare the winner on the webpage
 
     userSelections.forEach(selection => {
-        selection.addEventListener('click',playRound(e,result,userScore,computerScore));
+        selection.addEventListener('click', playRound);
     })
 }
 
